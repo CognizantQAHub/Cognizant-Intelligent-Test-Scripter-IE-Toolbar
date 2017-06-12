@@ -1,0 +1,16 @@
+# Log file
+*.log
+
+# Release
+**/bin/**
+**/obj/**
+**/Release/**
+**/Debug/**
+
+# Build
+*.exe
+*.msi
+
+# System Files
+.DS_Store
+Thumbs.db
