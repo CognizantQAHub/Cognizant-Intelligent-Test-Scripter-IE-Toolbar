@@ -38,7 +38,7 @@ If the Toolbar is not present even after installation,then
  * You see some .dll files
  * Then run the following command. Make sure `regasm` is available in path
 
- `regasm /codebase "SearchBar.dll"`
+ `regasm /codebase "CITS IE Addon.dll"`
 
 > Regasm will most probably be avaiable in %systemroot%\Microsoft.NET\Framework\v4.0.30319\regasm.exe
 
