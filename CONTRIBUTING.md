@@ -46,8 +46,6 @@ Also [Wix Toolset](http://wixtoolset.org/releases/) is needed for creating `msi`
 
 Then open the Project in Visual Studio by opening **CITS IE Addon.sln** file
 
-You might need to build the solution twice to get all the dlls generated properly.
-
 #### Prerequsite
 
 The extension uses WebSocket Protocol to connect to the server. The Server is started as soon as you Launch Spy/Heal/Recorder from the **Cognizant Intelligent Test Scripter**
