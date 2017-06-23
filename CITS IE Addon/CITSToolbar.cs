@@ -41,7 +41,7 @@ namespace CITS_IE_Addon
         {
             Server.setToolbar(this);
             setExplorer();
-            //Server.setSocket(addressTextBox.Text);
+            Server.setSocket(addressTextBox.Text);
         }
 
         public void setExplorer()
@@ -107,27 +107,27 @@ namespace CITS_IE_Addon
 
         private void spyToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            //if (spyToolStripMenuItem.Checked)
-            //{
-            //    setButtonText("SH");
-            //    Spy.register();
-            //}
-            //else
-            //{
-            //    setButtonText("H");
-            //    Spy.deRegister();
-            //}
+            if (spyToolStripMenuItem.Checked)
+            {
+                setButtonText("SH");
+                Spy.register();
+            }
+            else
+            {
+                setButtonText("H");
+                Spy.deRegister();
+            }
         }
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            //DialogResult result = colorDialog1.ShowDialog();
-            //if (result == DialogResult.OK)
-            //{
-            //    colorTextBox.BackColor = colorDialog1.Color;
-            //    Util.setHighlightColor("#" + colorDialog1.Color.R.ToString("X2") +
-            //    colorDialog1.Color.G.ToString("X2") + colorDialog1.Color.B.ToString("X2"));
-            //}
+            DialogResult result = colorDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                colorTextBox.BackColor = colorDialog1.Color;
+                Util.setHighlightColor("#" + colorDialog1.Color.R.ToString("X2") +
+                colorDialog1.Color.G.ToString("X2") + colorDialog1.Color.B.ToString("X2"));
+            }
         }
 
         #endregion
@@ -141,26 +141,6 @@ namespace CITS_IE_Addon
 
         private void mainToolBarButton_Click(object sender, EventArgs e)
         {
-            init();
-            if (Server.isRunning())
-            {
-                String text = ((ToolStripSplitButton)sender).Text;
-                Boolean flag = false;
-                switch (text)
-                {
-                    case "SH":
-                    case "H":
-                        flag = toggleHeal();
-                        break;
-                    case "S":
-                        flag = toggleSpy();
-                        break;
-                    case "R":
-                        flag = toggleRecord();
-                        break;
-                }
-                //cogToolBarSplitButton.ForeColor = flag ? Color.DarkGreen : Color.DarkRed;
-            }
 
         }
 
@@ -183,14 +163,14 @@ namespace CITS_IE_Addon
             {
                 Heal.deRegister();
                 Spy.deRegister();
-                //spyToolStripMenuItem.Checked = false;
-                //spyToolStripMenuItem.Visible = false;
+                spyToolStripMenuItem.Checked = false;
+                spyToolStripMenuItem.Visible = false;
                 return false;
             }
             else
             {
                 Heal.register();
-                //spyToolStripMenuItem.Visible = true;
+                spyToolStripMenuItem.Visible = true;
                 return true;
             }
         }
@@ -211,21 +191,21 @@ namespace CITS_IE_Addon
         public void startSpy()
         {
             setButtonText("S");
-            //cogToolBarSplitButton.ForeColor = Color.DarkRed;
+            cogToolBarSplitButton.ForeColor = Color.DarkRed;
             Util.showNotification("Press Ctrl+RightClick to save/update the higlighted Object");
         }
 
         public void startHeal()
         {
             setButtonText("H");
-            //cogToolBarSplitButton.ForeColor = Color.DarkRed;
+            cogToolBarSplitButton.ForeColor = Color.DarkRed;
             Util.showNotification("To heal any object, select the object in the tree then switch on the spy");
         }
 
         public void startRecord()
         {
             setButtonText("R");
-            //cogToolBarSplitButton.ForeColor = Color.DarkRed;
+            cogToolBarSplitButton.ForeColor = Color.DarkRed;
             Util.showNotification("Check Context menu (Ctrl+Right click) for assertions and other functionalities");
         }
 
@@ -261,13 +241,13 @@ namespace CITS_IE_Addon
 
         public void setConnectionImage(Image image)
         {
-            //toolStripButton1.Image = image;
+            toolStripButton1.Image = image;
         }
 
         public void setButtonText(String text)
         {
-            //cogToolBarSplitButton.Text = text;
-            //cogToolBarSplitButton.ForeColor = System.Drawing.Color.Green;
+            cogToolBarSplitButton.Text = text;
+            cogToolBarSplitButton.ForeColor = System.Drawing.Color.Green;
         }
     }
 }

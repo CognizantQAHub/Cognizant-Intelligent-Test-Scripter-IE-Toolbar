@@ -23,8 +23,10 @@
   <Fragment>
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ProductComponent" Guid="C9A6357B-25CC-4bcf-96C1-78736985D412">
-        <File Source="..\CITS IE Addon\bin\Release\BandObjectLib.DLL"/>
-        <File Source="..\CITS IE Addon\bin\Release\Interop.SHDocVw.DLL"/>
+        <File Source="..\CITS IE Addon\bin\Release\BandObjectLib.dll"/>
+        <File Source="..\CITS IE Addon\bin\Release\Interop.SHDocVw.dll"/>
+        <File Source="..\CITS IE Addon\bin\Release\Newtonsoft.Json.dll"/>
+        <File Source="..\CITS IE Addon\bin\Release\websocket-sharp.dll"/>
         <!--<File Source="..\CITS IE Addon\bin\Release\CITS IE Addon.dll"/>-->
       </Component>
       <Component Id="CITS_IE_Addon.dll" Guid="{BA25EAE5-0C33-4D11-A977-C72CE3B04D5A}">

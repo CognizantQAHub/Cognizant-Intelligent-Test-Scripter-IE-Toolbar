@@ -79,6 +79,11 @@
     <Compile Include="Main\CognizantITS.cs" />
     <Compile Include="Main\Util.cs" />
     <Compile Include="Main\Window.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Tools\CrossFrameIE.cs" />
     <Compile Include="Tools\Helper.cs" />
     <Compile Include="Tools\HtmlHandler.cs" />
@@ -94,9 +99,28 @@
     <EmbeddedResource Include="CITSToolbar.resx">
       <DependentUpon>CITSToolbar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="BandObjects.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\success.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

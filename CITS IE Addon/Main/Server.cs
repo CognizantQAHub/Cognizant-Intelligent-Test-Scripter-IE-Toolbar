@@ -96,7 +96,7 @@ namespace CITS_IE_Addon.Main
         private static void webSocketClose(object sender, CloseEventArgs e)
         {
             isrunning = false;
-            //cognizantitsToolbar.setConnectionImage(global::CITS_IE_Addon.Properties.Resources.error);
+            cognizantitsToolbar.setConnectionImage(global::CITS_IE_Addon.Properties.Resources.error);
             cognizantitsToolbar.stopAll();
             Util.showConnectionError();
         }
@@ -104,7 +104,7 @@ namespace CITS_IE_Addon.Main
         private static void webSocketOpen(object sender, EventArgs e)
         {
             isrunning = true;
-            //cognizantitsToolbar.setConnectionImage(global::CITS_IE_Addon.Properties.Resources.success);
+            cognizantitsToolbar.setConnectionImage(global::CITS_IE_Addon.Properties.Resources.success);
         }
 
         private static void sendMessage(string msg)
