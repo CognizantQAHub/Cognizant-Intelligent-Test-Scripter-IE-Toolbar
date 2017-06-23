@@ -42,9 +42,9 @@ Clone the Repo and extract it.
 
 The Project is developed using **Visual Studio 2013**. So Visual Studio is a must.
 
-Also [Microsoft Visual Studio 2013 Installer Projects](https://marketplace.visualstudio.com/items?itemName=UnniRavindranathan-MSFT.MicrosoftVisualStudio2013InstallerProjects) is needed for creating a msi after build is created
+Also [Wix Toolset](http://wixtoolset.org/releases/) is needed for creating `msi` after build is created. Install `WiX Toolset Visual Studio Extension` for your appropriate version as well.
 
-Then open the Project in Visual Studio by opening **CognizantITS Toolbar.sln** file
+Then open the Project in Visual Studio by opening **CITS IE Addon.sln** file
 
 You might need to build the solution twice to get all the dlls generated properly.
 

@@ -27,14 +27,13 @@ v1.0.3705
 
 Make sure IE is closed.
 
-If you are upgrading to newer version uninstall the old one (Programs and Features -> CognizantITS Toolbar)
+Download the [CITS_IE_Installer.zip](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases) and install it.
 
-Download the [CognizantITS Toolbar](https://github.com/CognizantQAHub/Cognizant-Intelligent-Test-Scripter-IE-Toolbar/releases) and install it.
-
-Open the IE and see the Toolbar at the top. If asked for confirmation accept it.
+Open IE and see the Toolbar at the top. If asked for confirmation accept it.
 
 If the Toolbar is not present even after installation,then 
  * Go to the Folder in which the toolbar is installed
+   (Program Files\CITS_IE_Installer)
  * You see some .dll files
  * Then run the following command. Make sure `regasm` is available in path
 
