@@ -64,7 +64,8 @@
             this.cogToolBarSplitButton.Name = "cogToolBarSplitButton";
             this.cogToolBarSplitButton.Size = new System.Drawing.Size(32, 22);
             this.cogToolBarSplitButton.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.cogToolBarSplitButton.ToolTipText = "CognizantITS IE Extension  - 1.0";
+            this.cogToolBarSplitButton.ToolTipText = "CITS IE Extension  - 1.1";
+            this.cogToolBarSplitButton.ButtonClick += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // spyToolStripMenuItem
             // 
@@ -73,6 +74,7 @@
             this.spyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.spyToolStripMenuItem.Text = "Spy";
             this.spyToolStripMenuItem.Visible = false;
+            this.spyToolStripMenuItem.CheckedChanged += new System.EventHandler(this.spyToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSplitButton2
             // 
@@ -102,6 +104,7 @@
             this.colorTextBox.Name = "colorTextBox";
             this.colorTextBox.ReadOnly = true;
             this.colorTextBox.Size = new System.Drawing.Size(100, 23);
+            this.colorTextBox.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // connectionAddressToolStripMenuItem
             // 
@@ -123,6 +126,7 @@
             this.enableToolbarToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.enableToolbarToolStripMenuItem.Text = "Enable Toolbar";
             this.enableToolbarToolStripMenuItem.ToolTipText = "Enable Toolbar on all Windows";
+            this.enableToolbarToolStripMenuItem.Click += new System.EventHandler(this.enableToolbarToolStripMenuItem_Click);
             // 
             // toolStripButton1
             // 
