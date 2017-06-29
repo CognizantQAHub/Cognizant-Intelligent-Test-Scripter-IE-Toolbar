@@ -141,6 +141,26 @@ namespace CITS_IE_Addon
 
         private void mainToolBarButton_Click(object sender, EventArgs e)
         {
+            init();
+            if (Server.isRunning())
+            {
+                String text = ((ToolStripSplitButton)sender).Text;
+                Boolean flag = false;
+                switch (text)
+                {
+                    case "SH":
+                    case "H":
+                        flag = toggleHeal();
+                        break;
+                    case "S":
+                        flag = toggleSpy();
+                        break;
+                    case "R":
+                        flag = toggleRecord();
+                        break;
+                }
+                cogToolBarSplitButton.ForeColor = flag ? Color.DarkGreen : Color.DarkRed;
+            }
 
         }
 

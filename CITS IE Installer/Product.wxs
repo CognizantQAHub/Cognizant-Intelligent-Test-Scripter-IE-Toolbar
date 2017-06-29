@@ -15,7 +15,7 @@
   <Fragment>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="CITS_IE_Installer" />
+        <Directory Id="INSTALLFOLDER" Name="CITS_IE_Toolbar" />
       </Directory>
     </Directory>
   </Fragment>

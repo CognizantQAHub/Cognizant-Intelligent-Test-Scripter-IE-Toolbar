@@ -65,13 +65,13 @@
             this.cogToolBarSplitButton.Size = new System.Drawing.Size(32, 22);
             this.cogToolBarSplitButton.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.cogToolBarSplitButton.ToolTipText = "CITS IE Extension  - 1.1";
-            this.cogToolBarSplitButton.ButtonClick += new System.EventHandler(this.toolStripButton1_Click);
+            this.cogToolBarSplitButton.Click += new System.EventHandler(this.mainToolBarButton_Click);
             // 
             // spyToolStripMenuItem
             // 
             this.spyToolStripMenuItem.CheckOnClick = true;
             this.spyToolStripMenuItem.Name = "spyToolStripMenuItem";
-            this.spyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.spyToolStripMenuItem.Size = new System.Drawing.Size(87, 22);
             this.spyToolStripMenuItem.Text = "Spy";
             this.spyToolStripMenuItem.Visible = false;
             this.spyToolStripMenuItem.CheckedChanged += new System.EventHandler(this.spyToolStripMenuItem_CheckedChanged);
@@ -136,6 +136,7 @@
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "Launch";
             this.toolStripButton1.ToolTipText = "Connection Status";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // CITSToolbar
             // 
