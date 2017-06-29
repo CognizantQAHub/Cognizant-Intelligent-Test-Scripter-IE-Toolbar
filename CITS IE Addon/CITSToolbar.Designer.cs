@@ -71,7 +71,7 @@
             // 
             this.spyToolStripMenuItem.CheckOnClick = true;
             this.spyToolStripMenuItem.Name = "spyToolStripMenuItem";
-            this.spyToolStripMenuItem.Size = new System.Drawing.Size(87, 22);
+            this.spyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.spyToolStripMenuItem.Text = "Spy";
             this.spyToolStripMenuItem.Visible = false;
             this.spyToolStripMenuItem.CheckedChanged += new System.EventHandler(this.spyToolStripMenuItem_CheckedChanged);
@@ -131,6 +131,7 @@
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::CITS_IE_Addon.Properties.Resources.error;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
