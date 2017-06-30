@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <Product Id="*" Name="CITS_IE_Toolbar" Language="1033" Version="1.0.0.0" Manufacturer="CTS" UpgradeCode="14cc268a-b02f-4db5-a97f-470a8f8a0a99">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
-    <UIRef Id="WixUI_Minimal" />
+
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes" />
+
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" />
+    <Condition Message="[ProductName] requires .NET Framework 4.6.1 or higher.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED]]>
+    </Condition>
+
+    <UIRef Id="WixUI_Minimal" />
 
     <Feature Id="ProductFeature" Title="CITS_IE_Toolbar" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="CITS_IE_Addon.dll"/>
     </Feature>
+
   </Product>
 
   <Fragment>
