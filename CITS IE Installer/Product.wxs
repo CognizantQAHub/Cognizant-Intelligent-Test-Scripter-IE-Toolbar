@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <Product Id="*" Name="CITS_IE_Toolbar" Language="1033" Version="1.0.0.0" Manufacturer="CTS" UpgradeCode="14cc268a-b02f-4db5-a97f-470a8f8a0a99">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED" />
+    <Condition Message="[ProductName] requires .NET Framework 4.0 or higher.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED]]>
+    </Condition>
+
+    <UIRef Id="WixUI_Minimal" />
+
+    <Feature Id="ProductFeature" Title="CITS_IE_Toolbar" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="CITS_IE_Addon.dll"/>
+    </Feature>
+
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="CITS_IE_Toolbar" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="ProductComponent" Guid="C9A6357B-25CC-4bcf-96C1-78736985D412">
+        <File Source="..\CITS IE Addon\bin\Release\BandObjectLib.dll"/>
+        <File Source="..\CITS IE Addon\bin\Release\Interop.SHDocVw.dll"/>
+        <File Source="..\CITS IE Addon\bin\Release\Newtonsoft.Json.dll"/>
+        <File Source="..\CITS IE Addon\bin\Release\websocket-sharp.dll"/>
+        <!--<File Source="..\CITS IE Addon\bin\Release\CITS IE Addon.dll"/>-->
+      </Component>
+      <Component Id="CITS_IE_Addon.dll" Guid="{BA25EAE5-0C33-4D11-A977-C72CE3B04D5A}">
+        <Class Id="{C9A6357B-25CC-4BCF-96C1-78736985D412}" Context="InprocServer32" Description="CognizantITS" ThreadingModel="both" ForeignServer="mscoree.dll">
+          <ProgId Id="CITS_IE_Addon.CITSToolbar" Description="CITS_IE_Addon.CITSToolbar" />
+        </Class>
+        <File Id="CITS_IE_Addon.dll" KeyPath="yes" Source="..\CITS IE Addon\bin\Release\CITS IE Addon.dll" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\Implemented Categories\{00021494-0000-0000-C000-000000000046}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32\1.0.0.0" Name="Class" Value="CITS_IE_Addon.CITSToolbar" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32\1.0.0.0" Name="Assembly" Value="CITS IE Addon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a0ebf05e75e2c6d2" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32\1.0.0.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32\1.0.0.0" Name="CodeBase" Value="file:///[#CITS_IE_Addon.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32" Name="Class" Value="CITS_IE_Addon.CITSToolbar" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32" Name="Assembly" Value="CITS IE Addon, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a0ebf05e75e2c6d2" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}\InprocServer32" Name="CodeBase" Value="file:///[#CITS_IE_Addon.dll]" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}" Name="MenuText" Value="CognizantITS" Type="string" Action="write" />
+        <RegistryValue Root="HKCR" Key="CLSID\{C9A6357B-25CC-4BCF-96C1-78736985D412}" Name="HelpText" Value="CognizantITS" Type="string" Action="write" />
+        <RegistryValue Root="HKLM" Key="Software\Microsoft\Internet Explorer\Toolbar" Name="{c9a6357b-25cc-4bcf-96c1-78736985d412}" Value="CognizantITS" Type="string" Action="write" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

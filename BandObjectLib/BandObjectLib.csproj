@@ -78,9 +78,9 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=4b827ebe229d539f">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Interop.SHDocVw.dll</HintPath>
+    <Reference Include="Interop.SHDocVw">
+      <HintPath>..\Libraries\Interop.SHDocVw.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
