@@ -1,0 +1,21 @@
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+configuration: Release
+build:
+  verbosity: minimal
+after_build:
+- cmd: 7z a "CITS_IE_Toolbar-%APPVEYOR_REPO_TAG_NAME%.zip" "%APPVEYOR_BUILD_FOLDER%\CITS IE Installer\bin\Release\CITS_IE_Toolbar.msi"
+artifacts:
+- path: '*.zip'
+  name: cits
+deploy:
+- provider: GitHub
+  description: New Build
+  auth_token:
+    secure: tjM1ax6XvBFxtHvBnheX/w0qBCVnLiVHLooSpBTlvAYrh16UTKJYKe2KxxJs4rCW
+  artifact: cits
+  prerelease: false
+  force_update: false
+  on:
+    appveyor_repo_tag: true
