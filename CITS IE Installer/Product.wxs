@@ -7,9 +7,9 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
-    <PropertyRef Id="WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED" />
-    <Condition Message="[ProductName] requires .NET Framework 4.6.1 or higher.">
-      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_461_OR_LATER_INSTALLED]]>
+    <PropertyRef Id="WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED" />
+    <Condition Message="[ProductName] requires .NET Framework 4.0 or higher.">
+      <![CDATA[Installed OR WIX_IS_NETFRAMEWORK_40_OR_LATER_INSTALLED]]>
     </Condition>
 
     <UIRef Id="WixUI_Minimal" />
