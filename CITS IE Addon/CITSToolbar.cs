@@ -150,6 +150,7 @@ namespace CITS_IE_Addon
             if (WebSocketClient.isRunning())
             {
                 String text = ((ToolStripSplitButton)sender).Text;
+                Logger.Log("Toggle via Main Button");
                 toggleSHR(text);
             }
 
@@ -183,8 +184,15 @@ namespace CITS_IE_Addon
             }
             else
             {
-                Spy.register();
-                return true;
+                try
+                {
+                    Spy.register();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.ToString());
+                }
+                return Spy.isRunning();
             }
         }
         private Boolean toggleHeal()
@@ -213,8 +221,15 @@ namespace CITS_IE_Addon
             }
             else
             {
-                Recorder.register();
-                return true;
+                try
+                {
+                    Recorder.register();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.ToString());
+                }
+                return Recorder.isRunning();
             }
         }
 
@@ -234,6 +249,7 @@ namespace CITS_IE_Addon
 
         public void startRecord()
         {
+            Logger.Log("Toggle via Server");
             setButtonText("R");
             toggleSHR("R");
             Util.showNotification("Check Context menu (Ctrl+Right click) for assertions and other functionalities");
