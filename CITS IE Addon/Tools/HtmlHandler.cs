@@ -100,7 +100,7 @@ namespace CITS_IE_Addon
             {
                 if (this.eventHandler != null)
                 {
-                    if(Server.isRunning())
+                    if(WebSocketClient.isRunning())
                     this.eventHandler(this, EventArgs.Empty);
                 }
             }

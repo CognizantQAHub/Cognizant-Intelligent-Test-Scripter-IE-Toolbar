@@ -20,14 +20,21 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WebSocketSharp;
+using CITS_IE_Addon.Tools;
 
 namespace CITS_IE_Addon.Main
 {
-    class Server
+    class WebSocketClient
     {
         private static WebSocket webSocket;
         private static CITSToolbar cognizantitsToolbar;
         private static Boolean isrunning = false;
+        private enum SslProtocolsHack
+        {
+            Tls = 192,
+            Tls11 = 768,
+            Tls12 = 3072
+        }
 
         #region Set Toolbar
         internal static void setToolbar(CITSToolbar toolbar)
@@ -41,18 +48,30 @@ namespace CITS_IE_Addon.Main
         {
             try
             {
+                Tools.Logger.Log("Check if Server is running");
                 if (!isRunning())
                 {
+                    Tools.Logger.Log("Trying to connect with server");
+                    Tools.Logger.Log("Server " + address);
                     webSocket = new WebSocket(address);
                     webSocket.OnMessage += new EventHandler<MessageEventArgs>(websocketMessage);
                     webSocket.OnClose += new EventHandler<CloseEventArgs>(webSocketClose);
                     webSocket.OnOpen += new EventHandler(webSocketOpen);
+                    webSocket.OnError += (sender, e) =>
+                    {
+                        Tools.Logger.Log("OnError");
+                        Tools.Logger.Log(e.Message.ToString());
+                    };
+                    Tools.Logger.Log("Connecting");
                     webSocket.Connect();
+                    Tools.Logger.Log("Connected");
                 }
 
             }
             catch (Exception ex)
             {
+                Tools.Logger.Log("Error Connecting Server");
+                Tools.Logger.Log(ex.ToString());
                 MessageBox.Show(ex.ToString());
             }
         }
@@ -62,6 +81,7 @@ namespace CITS_IE_Addon.Main
             try
             {
                 HealObject data = HealObject.ToObject(e.Data);
+                Tools.Logger.Log("Message from Server - " + data.action);
                 switch (data.action)
                 {
                     case "find":
@@ -83,7 +103,7 @@ namespace CITS_IE_Addon.Main
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Tools.Logger.Log(ex.ToString());
             }
         }
 
@@ -95,10 +115,21 @@ namespace CITS_IE_Addon.Main
 
         private static void webSocketClose(object sender, CloseEventArgs e)
         {
-            isrunning = false;
-            cognizantitsToolbar.setConnectionImage(global::CITS_IE_Addon.Properties.Resources.error);
-            cognizantitsToolbar.stopAll();
-            Util.showConnectionError();
+            var sslProtocolHack = (System.Security.Authentication.SslProtocols)(SslProtocolsHack.Tls12 | SslProtocolsHack.Tls11 | SslProtocolsHack.Tls);
+
+            if (e.Code == 1015 && webSocket.SslConfiguration.EnabledSslProtocols != sslProtocolHack)
+            {
+                Tools.Logger.Log("TlsHandshakeFailure Trying again");
+                webSocket.SslConfiguration.EnabledSslProtocols = sslProtocolHack;
+                webSocket.Connect();
+            }
+            else
+            {
+                isrunning = false;
+                cognizantitsToolbar.setConnectionImage(global::CITS_IE_Addon.Properties.Resources.error);
+                cognizantitsToolbar.stopAll();
+                Util.showConnectionError();
+            }
         }
 
         private static void webSocketOpen(object sender, EventArgs e)

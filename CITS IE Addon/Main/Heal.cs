@@ -120,11 +120,12 @@ namespace CITS_IE_Addon.Main
                 case Attributes.linktext:
                     return getElementByLinkText(value, doc);
                 case Attributes.css:
-                    return getElementByXPathOrCSS(value, doc);
+                    return getElementByCSS(value, doc);
                 case Attributes.classname:
                     return getElementByClassName(value, doc);
                 case Attributes.rxpath:
                 case Attributes.xpath:
+                    return getElementByXPath(value, doc);
                 default:
                     return null;
             }
@@ -156,16 +157,23 @@ namespace CITS_IE_Addon.Main
 
         private static Element getElementByClassName(String className, DispHTMLDocument doc)
         {
-            Element element = new Element();
-            try
+            if (className.Contains(" "))
             {
-                element = getFromCollection(doc.getElementsByClassName(className));
+                return getElementByCSS(className.Replace(" ", "."), doc);
             }
-            catch { }
-            return element;
+            else
+            {
+                Element element = new Element();
+                try
+                {
+                    element = getFromCollection(doc.getElementsByClassName(className));
+                }
+                catch { }
+                return element;
+            }
         }
 
-        private static Element getElementByXPathOrCSS(String Xpath, DispHTMLDocument doc)
+        private static Element getElementByCSS(String Xpath, DispHTMLDocument doc)
         {
             Element element = new Element();
             try
@@ -174,6 +182,12 @@ namespace CITS_IE_Addon.Main
             }
             catch { }
             return element;
+        }
+
+        private static Element getElementByXPath(String Xpath, DispHTMLDocument doc)
+        {
+            //To be implemented
+            return null;
         }
 
         private static Element getElementByLinkText(String LinkText, DispHTMLDocument doc)

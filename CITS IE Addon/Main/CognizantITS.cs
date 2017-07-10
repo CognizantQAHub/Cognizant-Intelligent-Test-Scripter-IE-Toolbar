@@ -33,7 +33,7 @@ namespace CITS_IE_Addon.Main
                 rObject.input = data;
                 setObjectProperties(element, rObject);
                 rObject.objectname = CognizantITSObject.getObjectName(element, rObject.prop);
-                Server.send(rObject.ToString());
+                WebSocketClient.send(rObject.ToString());
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@ namespace CITS_IE_Addon.Main
                 rObject.method = method;
                 setObjectProperties(element, rObject);
                 rObject.objectname = CognizantITSObject.getObjectName(element, rObject.prop);
-                Server.send(rObject.ToString());
+                WebSocketClient.send(rObject.ToString());
             }
             catch (Exception ex)
             {
@@ -61,7 +61,7 @@ namespace CITS_IE_Addon.Main
         {
             RecordBrowser rObject = new RecordBrowser();
             rObject.method = method;
-            Server.send(rObject.ToString());
+            WebSocketClient.send(rObject.ToString());
         }
 
         internal static void sendRecordedObject(String method, String input)
@@ -69,7 +69,7 @@ namespace CITS_IE_Addon.Main
             RecordBrowserWithInput rObject = new RecordBrowserWithInput();
             rObject.method = String.IsNullOrEmpty(method.Trim())?null:method;
             rObject.input = input;
-            Server.send(rObject.ToString());
+            WebSocketClient.send(rObject.ToString());
         }
 
         internal static void sendSpiedObject(MSHTML.IHTMLElement element)
@@ -78,7 +78,7 @@ namespace CITS_IE_Addon.Main
             {
                 SpyObject sObject = new SpyObject();
                 setObjectProperties(element, sObject);
-                Server.send(sObject.ToString());
+                WebSocketClient.send(sObject.ToString());
             }
             catch (Exception ex)
             {
@@ -93,7 +93,7 @@ namespace CITS_IE_Addon.Main
                 SpySaveObject sObject = new SpySaveObject();
                 setObjectProperties(element, sObject);
                 sObject.objectname = CognizantITSObject.getObjectName(element, sObject.prop);
-                Server.send(sObject.ToString());
+                WebSocketClient.send(sObject.ToString());
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace CITS_IE_Addon.Main
             hResult.pageName = pageName;
             hResult.objectname = objectname;
             hResult.exist = exist;
-            Server.send(hResult.ToString());
+            WebSocketClient.send(hResult.ToString());
         }
 
         private static ObjectPropertyForElement setObjectProperties(MSHTML.IHTMLElement element, ObjectPropertyForElement data)
