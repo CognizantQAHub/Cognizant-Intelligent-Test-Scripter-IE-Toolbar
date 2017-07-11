@@ -75,7 +75,7 @@
     <Compile Include="Main\Heal.cs" />
     <Compile Include="Main\Recorder.cs" />
     <Compile Include="Main\Spy.cs" />
-    <Compile Include="Main\Server.cs" />
+    <Compile Include="Main\WebSocketClient.cs" />
     <Compile Include="Main\CognizantITS.cs" />
     <Compile Include="Main\Util.cs" />
     <Compile Include="Main\Window.cs" />
@@ -88,6 +88,7 @@
     <Compile Include="Tools\Helper.cs" />
     <Compile Include="Tools\HtmlHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BandObjectLib\BandObjectLib.csproj">

@@ -104,9 +104,7 @@ namespace CITS_IE_Addon.Main
 
         internal static void showNotification(string message)
         {
-           // NotificationWindow.PopupNotifier popupNotification = new NotificationWindow.PopupNotifier();
-           // popupNotification.ContentText = message;
-           // popupNotification.Popup();
+            Tools.Logger.Log(message);
         }
     }
 }

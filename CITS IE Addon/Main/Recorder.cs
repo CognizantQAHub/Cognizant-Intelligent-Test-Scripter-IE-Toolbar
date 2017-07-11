@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 **/
 
+using CITS_IE_Addon.Tools;
 using MSHTML;
 using System;
 using System.Collections;
@@ -43,10 +44,11 @@ namespace CITS_IE_Addon.Main
 
         public static void register()
         {
-            running = true;
+            Logger.Log("Starting Recorder");
             List<DispHTMLDocument> documents = Helper.getHelper().getDocumentList();
             foreach (DispHTMLDocument doc in documents)
                 register(doc);
+            running = true;
         }
 
         internal static void register(DispHTMLDocument doc)
@@ -81,6 +83,7 @@ namespace CITS_IE_Addon.Main
 
         private static void registerContextEvent(DispHTMLDocument document, IHTMLWindow2 window)
         {
+            Logger.Log("Starting Recorder - Context");
             contextHandler = new HtmlHandler(recordContextEvent, window);
             Helper.getHelper().addEventListener(document, "contextmenu", contextHandler);
         }

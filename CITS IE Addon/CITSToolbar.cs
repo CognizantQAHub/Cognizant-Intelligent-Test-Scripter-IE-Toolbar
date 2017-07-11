@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using CITS_IE_Addon.Main;
 using SHDocVw;
 using MSHTML;
+using CITS_IE_Addon.Tools;
 
 namespace CITS_IE_Addon
 {
@@ -29,6 +30,7 @@ namespace CITS_IE_Addon
             InitializeComponent();
             this.MinSize = new System.Drawing.Size(624, 24);
             Helper.getHelper().contextMenu = CustomContextMenu.getContextMenu();
+            Logger.Init();
         }
 
         #region Add DocumentCompleteListener
@@ -39,9 +41,9 @@ namespace CITS_IE_Addon
 
         private void init()
         {
-            Server.setToolbar(this);
+            WebSocketClient.setToolbar(this);
             setExplorer();
-            Server.setSocket(addressTextBox.Text);
+            WebSocketClient.setSocket(addressTextBox.Text);
         }
 
         public void setExplorer()
@@ -94,7 +96,7 @@ namespace CITS_IE_Addon
 
         private Boolean iCanProceed()
         {
-            return Server.isRunning() && (Spy.isRunning() || Recorder.isRunning());
+            return WebSocketClient.isRunning() && (Spy.isRunning() || Recorder.isRunning());
         }
 
         #endregion
@@ -102,6 +104,7 @@ namespace CITS_IE_Addon
         #region CognizantITS Action
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            Logger.Log("Clicking on Connection Button");
             init();
         }
 
@@ -135,33 +138,41 @@ namespace CITS_IE_Addon
         #region Enable Toolbar in All Windows
         private void enableToolbarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Logger.Log("Trying to Enable Toolbar Button");
             Window.enableToolbar();
         }
         #endregion
 
         private void mainToolBarButton_Click(object sender, EventArgs e)
         {
+            Logger.Log("Clicking on Main Button");
             init();
-            if (Server.isRunning())
+            if (WebSocketClient.isRunning())
             {
                 String text = ((ToolStripSplitButton)sender).Text;
-                Boolean flag = false;
-                switch (text)
-                {
-                    case "SH":
-                    case "H":
-                        flag = toggleHeal();
-                        break;
-                    case "S":
-                        flag = toggleSpy();
-                        break;
-                    case "R":
-                        flag = toggleRecord();
-                        break;
-                }
-                cogToolBarSplitButton.ForeColor = flag ? Color.DarkGreen : Color.DarkRed;
+                Logger.Log("Toggle via Main Button");
+                toggleSHR(text);
             }
 
+        }
+
+        private void toggleSHR(String text)
+        {
+            Boolean flag = false;
+            switch (text)
+            {
+                case "SH":
+                case "H":
+                    flag = toggleHeal();
+                    break;
+                case "S":
+                    flag = toggleSpy();
+                    break;
+                case "R":
+                    flag = toggleRecord();
+                    break;
+            }
+            cogToolBarSplitButton.ForeColor = flag ? Color.DarkGreen : Color.DarkRed;
         }
 
         private Boolean toggleSpy()
@@ -173,8 +184,15 @@ namespace CITS_IE_Addon
             }
             else
             {
-                Spy.register();
-                return true;
+                try
+                {
+                    Spy.register();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.ToString());
+                }
+                return Spy.isRunning();
             }
         }
         private Boolean toggleHeal()
@@ -203,29 +221,37 @@ namespace CITS_IE_Addon
             }
             else
             {
-                Recorder.register();
-                return true;
+                try
+                {
+                    Recorder.register();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.ToString());
+                }
+                return Recorder.isRunning();
             }
         }
 
         public void startSpy()
         {
             setButtonText("S");
-            cogToolBarSplitButton.ForeColor = Color.DarkRed;
+            toggleSHR("S");
             Util.showNotification("Press Ctrl+RightClick to save/update the higlighted Object");
         }
 
         public void startHeal()
         {
             setButtonText("H");
-            cogToolBarSplitButton.ForeColor = Color.DarkRed;
+            toggleSHR("H");
             Util.showNotification("To heal any object, select the object in the tree then switch on the spy");
         }
 
         public void startRecord()
         {
+            Logger.Log("Toggle via Server");
             setButtonText("R");
-            cogToolBarSplitButton.ForeColor = Color.DarkRed;
+            toggleSHR("R");
             Util.showNotification("Check Context menu (Ctrl+Right click) for assertions and other functionalities");
         }
 
@@ -237,24 +263,27 @@ namespace CITS_IE_Addon
                 if (Spy.isRunning())
                     Spy.deRegister();
             }
-            catch
-            { //MessageBox.Show(ex.ToString());
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
             }
             try
             {
                 if (Heal.isRunning())
                     Heal.deRegister();
             }
-            catch
-            { //MessageBox.Show(ex.ToString());
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
             }
             try
             {
                 if (Recorder.isRunning())
                     Recorder.deRegister();
             }
-            catch
-            { //MessageBox.Show(ex.ToString());
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
             }
         }
 

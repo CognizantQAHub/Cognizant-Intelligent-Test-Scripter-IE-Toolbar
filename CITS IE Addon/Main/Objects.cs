@@ -263,7 +263,6 @@ namespace CITS_IE_Addon.Main
                 Xpath = "/" + Element.tagName.ToLower() + getElementCount(Element) + Xpath;
                 Element = Element.parentElement;
             }
-            Console.WriteLine(Xpath);
             return Xpath;
         }
         #endregion
@@ -282,7 +281,6 @@ namespace CITS_IE_Addon.Main
                 Xpath = "/" + Element.tagName.ToLower() + getElementCount(Element) + Xpath;
                 Element = Element.parentElement;
             }
-            Console.WriteLine(Xpath);
             return Xpath;
         }
         #endregion

@@ -36,10 +36,10 @@ namespace CITS_IE_Addon.Main
 
         internal static void register()
         {
-            running = true;
             List<DispHTMLDocument> documents = Helper.getHelper().getDocumentList();
             foreach (DispHTMLDocument doc in documents)
                 register(doc);
+            running = true;
         }
 
         internal static void register(DispHTMLDocument doc)
