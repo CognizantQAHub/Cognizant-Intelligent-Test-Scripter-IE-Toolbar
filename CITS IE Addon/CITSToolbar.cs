@@ -29,14 +29,21 @@ namespace CITS_IE_Addon
         {
             InitializeComponent();
             this.MinSize = new System.Drawing.Size(624, 24);
-            Helper.getHelper().contextMenu = CustomContextMenu.getContextMenu();
-            Logger.Init();
+            try
+            {
+                Helper.getHelper().contextMenu = CustomContextMenu.getContextMenu();
+                Logger.Init();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         #region Add DocumentCompleteListener
         public override void initListeners()
         {
-            Explorer.DocumentComplete += new DWebBrowserEvents2_DocumentCompleteEventHandler(OnDocumentComplete);
+            //Explorer.DocumentComplete += new DWebBrowserEvents2_DocumentCompleteEventHandler(OnDocumentComplete);
         }
 
         private void init()
