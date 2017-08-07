@@ -14,13 +14,21 @@ namespace CITS_IE_Addon.Tools
 
         public static void Init()
         {
-            string logPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            FileStream filestream = new FileStream(logPath + "\\log.txt", FileMode.Append);
-            var streamwriter = new StreamWriter(filestream);
-            streamwriter.AutoFlush = true;
-            Console.SetOut(streamwriter);
-            Console.SetError(streamwriter);
-            Logger.Log("Starting Logging");
+            try
+            {
+                string logPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                FileStream filestream = new FileStream(logPath + "\\log.txt", FileMode.Append, FileAccess.ReadWrite, FileShare.ReadWrite);
+                var streamwriter = new StreamWriter(filestream);
+                streamwriter.AutoFlush = true;
+                Console.SetOut(streamwriter);
+                Console.SetError(streamwriter);
+                Logger.Log("Starting Logging");
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Error in Log File Creation");
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
         }
 
         public static void Log(string logMessage)
