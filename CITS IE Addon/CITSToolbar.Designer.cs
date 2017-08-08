@@ -64,7 +64,7 @@
             this.cogToolBarSplitButton.Name = "cogToolBarSplitButton";
             this.cogToolBarSplitButton.Size = new System.Drawing.Size(32, 22);
             this.cogToolBarSplitButton.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.cogToolBarSplitButton.ToolTipText = "CITS IE Extension  - 1.2";
+            this.cogToolBarSplitButton.ToolTipText = "CITS IE Extension  - xx";
             this.cogToolBarSplitButton.Click += new System.EventHandler(this.mainToolBarButton_Click);
             // 
             // spyToolStripMenuItem

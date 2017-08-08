@@ -1,47 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using System.IO;
-using System.Reflection;
 
 namespace CITS_IE_Addon.Tools
 {
     public static class Logger
     {
 
-        public static StreamWriter streamwriter;
+        public static StreamWriter streamwriter = null;
+
+        public static string logPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\CITS_Toolbar";
 
         public static void Init()
         {
             try
             {
+                createFolderIfNotExists();
                 if (streamwriter == null)
                 {
-                    string logPath = getLogLoc();
                     FileStream filestream = new FileStream(logPath + "\\log.txt", FileMode.Append, FileAccess.Write, FileShare.Write);
                     streamwriter = new StreamWriter(filestream);
                     streamwriter.AutoFlush = true;
-                    Logger.Log("Started Logging");
                 }
 
                 Console.SetOut(streamwriter);
                 Console.SetError(streamwriter);
+                Logger.Log("Started Logging");
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("Error in Log File Creation." + ex.ToString());
+                System.Windows.Forms.MessageBox.Show("Error in Log file creation." + ex.ToString());
             }
         }
 
-        private static String getLogLoc()
+        private static void createFolderIfNotExists()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\CITS_Toolbar";
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
-            return path;
+            if (!Directory.Exists(logPath))
+                Directory.CreateDirectory(logPath);
         }
 
         public static void Log(string logMessage)

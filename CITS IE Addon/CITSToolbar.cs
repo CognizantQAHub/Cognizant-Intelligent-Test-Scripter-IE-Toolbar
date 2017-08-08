@@ -29,21 +29,22 @@ namespace CITS_IE_Addon
         {
             InitializeComponent();
             this.MinSize = new System.Drawing.Size(624, 24);
-            try
-            {
-                Helper.getHelper().contextMenu = CustomContextMenu.getContextMenu();
-                Logger.Init();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            Helper.getHelper().contextMenu = CustomContextMenu.getContextMenu();
+            Logger.Init();
+            setVersion();
+        }
+
+        private void setVersion()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            cogToolBarSplitButton.ToolTipText = "CITS IE Extension  - " + fvi.FileVersion;
         }
 
         #region Add DocumentCompleteListener
         public override void initListeners()
         {
-            //Explorer.DocumentComplete += new DWebBrowserEvents2_DocumentCompleteEventHandler(OnDocumentComplete);
+            Explorer.DocumentComplete += new DWebBrowserEvents2_DocumentCompleteEventHandler(OnDocumentComplete);
         }
 
         private void init()

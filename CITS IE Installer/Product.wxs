@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-  <Product Id="*" Name="CITS_IE_Toolbar" Language="1033" Version="1.0.0.2" Manufacturer="CTS" UpgradeCode="14cc268a-b02f-4db5-a97f-470a8f8a0a99">
+  <Product Id="*" Name="CITS_IE_Toolbar" Language="1033" Version="!(bind.FileVersion.CITS_IE_Addon.dll)" Manufacturer="Cognizant Technology Solutions" UpgradeCode="14cc268a-b02f-4db5-a97f-470a8f8a0a99">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
 
