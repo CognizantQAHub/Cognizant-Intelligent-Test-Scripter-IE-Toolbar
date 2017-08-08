@@ -11,30 +11,38 @@ namespace CITS_IE_Addon.Tools
 {
     public static class Logger
     {
-        
+
         public static StreamWriter streamwriter;
 
         public static void Init()
         {
             try
             {
-                if (streamwriter==null)
+                if (streamwriter == null)
                 {
-                    string logPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                    string logPath = getLogLoc();
                     FileStream filestream = new FileStream(logPath + "\\log.txt", FileMode.Append, FileAccess.Write, FileShare.Write);
                     streamwriter = new StreamWriter(filestream);
                     streamwriter.AutoFlush = true;
                 }
-               
+
                 Console.SetOut(streamwriter);
                 Console.SetError(streamwriter);
                 Logger.Log("Starting Logging");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show("Error in Log File Creation");
                 System.Windows.Forms.MessageBox.Show(ex.ToString());
             }
+        }
+
+        private static String getLogLoc()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\CITS_Toolbar";
+            if (!File.Exists(path))
+                Directory.CreateDirectory(path);
+            return path;
         }
 
         public static void Log(string logMessage)
