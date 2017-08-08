@@ -18,9 +18,11 @@ namespace CITS_IE_Addon.Tools
         {
             try
             {
+                string logPath = getLogLoc();
+                System.Windows.Forms.MessageBox.Show("Outside "+logPath);
                 if (streamwriter == null)
                 {
-                    string logPath = getLogLoc();
+                    System.Windows.Forms.MessageBox.Show("Inside " + logPath);
                     FileStream filestream = new FileStream(logPath + "\\log.txt", FileMode.Append, FileAccess.Write, FileShare.Write);
                     streamwriter = new StreamWriter(filestream);
                     streamwriter.AutoFlush = true;
@@ -42,7 +44,7 @@ namespace CITS_IE_Addon.Tools
             string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\CITS_Toolbar";
             if (!File.Exists(path))
                 Directory.CreateDirectory(path);
-            System.Windows.Forms.MessageBox.Show(path);
+            //System.Windows.Forms.MessageBox.Show(path);
             System.Windows.Forms.MessageBox.Show(File.Exists(path)+"");
             return path;
         }
