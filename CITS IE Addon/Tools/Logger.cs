@@ -43,7 +43,7 @@ namespace CITS_IE_Addon.Tools
             if (!File.Exists(path))
                 Directory.CreateDirectory(path);
             System.Windows.Forms.MessageBox.Show(path);
-            System.Windows.Forms.MessageBox.Show(File.Exists(path));
+            System.Windows.Forms.MessageBox.Show(File.Exists(path)+"");
             return path;
         }
 
