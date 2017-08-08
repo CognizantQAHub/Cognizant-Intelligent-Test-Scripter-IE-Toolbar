@@ -42,6 +42,8 @@ namespace CITS_IE_Addon.Tools
             string path = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\CITS_Toolbar";
             if (!File.Exists(path))
                 Directory.CreateDirectory(path);
+            System.Windows.Forms.MessageBox.Show(path);
+            System.Windows.Forms.MessageBox.Show(File.Exists(path));
             return path;
         }
 
