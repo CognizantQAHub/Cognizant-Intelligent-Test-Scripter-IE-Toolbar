@@ -31,6 +31,14 @@ namespace CITS_IE_Addon
             this.MinSize = new System.Drawing.Size(624, 24);
             Helper.getHelper().contextMenu = CustomContextMenu.getContextMenu();
             Logger.Init();
+            setVersion();
+        }
+
+        private void setVersion()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            cogToolBarSplitButton.ToolTipText = "CITS IE Extension  - " + fvi.FileVersion;
         }
 
         #region Add DocumentCompleteListener
