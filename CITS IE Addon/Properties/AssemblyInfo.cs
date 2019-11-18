@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Cognizant Technology Solutions")]
 [assembly: AssemblyProduct("CITS IE Addon")]
-[assembly: AssemblyCopyright("Copyright © Cognizant 2014-2017")]
+[assembly: AssemblyCopyright("Copyright © Cognizant 2014-2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
